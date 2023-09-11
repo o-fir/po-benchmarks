@@ -1,0 +1,30 @@
+; num_oven: 2
+; num_brick: 4
+; num_temp: 2
+
+(define
+   (problem pfile0)
+   (:domain quarantine)
+   (:objects
+      c1 - contamination
+      e1 e2 e3 - experiment
+      env1 - environment
+      d1 - decontamination-procedure
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (perform_experiment e1))
+         (task1 (perform_experiment e2))
+         (task2 (perform_experiment e3))
+      )
+   )
+
+   (:init
+      (experiment-type e1 c1)
+      (experiment-type e2 c1)
+      (experiment-type e3 c1)
+      (decontamination-type d1 c1)
+   )
+)

@@ -1,0 +1,68 @@
+; num_postmen: 12
+; num_mail: 17
+; num_loc: 14
+
+(define
+   (problem pfile43)
+   (:domain postman)
+   (:objects
+      postman_0, postman_1, postman_2, postman_3, postman_4, postman_5, postman_6, postman_7, postman_8, postman_9, postman_10, postman_11 - postman
+      mail_0, mail_1, mail_2, mail_3, mail_4, mail_5, mail_6, mail_7, mail_8, mail_9, mail_10, mail_11, mail_12, mail_13, mail_14, mail_15, mail_16 - mail
+      loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6, loc_7, loc_8, loc_9, loc_10, loc_11, loc_12, loc_13 - location
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (deliver mail_0 loc_3))
+         (task1 (deliver mail_1 loc_1))
+         (task2 (deliver mail_2 loc_5))
+         (task3 (deliver mail_3 loc_10))
+         (task4 (deliver mail_4 loc_2))
+         (task5 (deliver mail_5 loc_0))
+         (task6 (deliver mail_6 loc_10))
+         (task7 (deliver mail_7 loc_4))
+         (task8 (deliver mail_8 loc_6))
+         (task9 (deliver mail_9 loc_12))
+         (task10 (deliver mail_10 loc_12))
+         (task11 (deliver mail_11 loc_6))
+         (task12 (deliver mail_12 loc_0))
+         (task13 (deliver mail_13 loc_10))
+         (task14 (deliver mail_14 loc_11))
+         (task15 (deliver mail_15 loc_9))
+         (task16 (deliver mail_16 loc_7))
+      )
+   )
+
+   (:init
+      (at postman_0 loc_5)
+      (at postman_1 loc_0)
+      (at postman_2 loc_6)
+      (at postman_3 loc_12)
+      (at postman_4 loc_7)
+      (at postman_5 loc_4)
+      (at postman_6 loc_0)
+      (at postman_7 loc_3)
+      (at postman_8 loc_2)
+      (at postman_9 loc_12)
+      (at postman_10 loc_7)
+      (at postman_11 loc_8)
+      (at mail_0 loc_1)
+      (at mail_1 loc_5)
+      (at mail_2 loc_5)
+      (at mail_3 loc_5)
+      (at mail_4 loc_9)
+      (at mail_5 loc_5)
+      (at mail_6 loc_4)
+      (at mail_7 loc_11)
+      (at mail_8 loc_9)
+      (at mail_9 loc_5)
+      (at mail_10 loc_1)
+      (at mail_11 loc_7)
+      (at mail_12 loc_11)
+      (at mail_13 loc_6)
+      (at mail_14 loc_8)
+      (at mail_15 loc_10)
+      (at mail_16 loc_1)
+   )
+)

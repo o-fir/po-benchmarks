@@ -1,0 +1,29 @@
+; num_baristas: 4
+; num_customers: 4
+; barista_distribution: 1
+
+(define
+   (problem pfile5)
+   (:domain barista)
+   (:objects
+      barista_0 barista_1 barista_2 barista_3 - barista
+      customer_0 customer_1 customer_2 customer_3 - customer
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (serve customer_0))
+         (task1 (serve customer_1))
+         (task2 (serve customer_2))
+         (task3 (serve customer_3))
+      )
+   )
+
+   (:init
+      (barista-in-the-back barista_0)
+      (barista-in-the-back barista_1)
+      (barista-in-the-back barista_2)
+      (barista-in-the-back barista_3)
+   )
+)

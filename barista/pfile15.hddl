@@ -1,0 +1,41 @@
+; num_baristas: 9
+; num_customers: 11
+; barista_distribution: 3
+
+(define
+   (problem pfile15)
+   (:domain barista)
+   (:objects
+      barista_0 barista_1 barista_2 barista_3 barista_4 barista_5 barista_6 barista_7 barista_8 - barista
+      customer_0 customer_1 customer_2 customer_3 customer_4 customer_5 customer_6 customer_7 customer_8 customer_9 customer_10 - customer
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (serve customer_0))
+         (task1 (serve customer_1))
+         (task2 (serve customer_2))
+         (task3 (serve customer_3))
+         (task4 (serve customer_4))
+         (task5 (serve customer_5))
+         (task6 (serve customer_6))
+         (task7 (serve customer_7))
+         (task8 (serve customer_8))
+         (task9 (serve customer_9))
+         (task10 (serve customer_10))
+      )
+   )
+
+   (:init
+      (barista-in-the-back barista_0)
+      (barista-at-counter barista_1)
+      (barista-in-the-back barista_2)
+      (barista-at-counter barista_3)
+      (barista-in-the-back barista_4)
+      (barista-at-counter barista_5)
+      (barista-in-the-back barista_6)
+      (barista-at-counter barista_7)
+      (barista-in-the-back barista_8)
+   )
+)

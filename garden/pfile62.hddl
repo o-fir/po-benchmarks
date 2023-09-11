@@ -1,0 +1,67 @@
+; num_gardener: 15
+; num_tree: 13
+; num_hole: 13
+; num_well: 28
+
+(define
+   (problem pfile62)
+   (:domain garden)
+   (:objects
+      gardener_0, gardener_1, gardener_2, gardener_3, gardener_4, gardener_5, gardener_6, gardener_7, gardener_8, gardener_9, gardener_10, gardener_11, gardener_12, gardener_13, gardener_14 - gardener
+      tree_0, tree_1, tree_2, tree_3, tree_4, tree_5, tree_6, tree_7, tree_8, tree_9, tree_10, tree_11, tree_12 - tree
+      hole_0, hole_1, hole_2, hole_3, hole_4, hole_5, hole_6, hole_7, hole_8, hole_9, hole_10, hole_11, hole_12 - hole
+      well_0, well_1, well_2, well_3, well_4, well_5, well_6, well_7, well_8, well_9, well_10, well_11, well_12, well_13, well_14, well_15, well_16, well_17, well_18, well_19, well_20, well_21, well_22, well_23, well_24, well_25, well_26, well_27 - well
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (plant tree_0))
+         (task1 (plant tree_1))
+         (task2 (plant tree_2))
+         (task3 (plant tree_3))
+         (task4 (plant tree_4))
+         (task5 (plant tree_5))
+         (task6 (plant tree_6))
+         (task7 (plant tree_7))
+         (task8 (plant tree_8))
+         (task9 (plant tree_9))
+         (task10 (plant tree_10))
+         (task11 (plant tree_11))
+         (task12 (plant tree_12))
+      )
+   )
+
+   (:init
+      (at gardener_0 hole_2)
+      (at gardener_1 hole_8)
+      (at gardener_2 hole_1)
+      (at gardener_3 hole_12)
+      (at gardener_4 hole_1)
+      (at gardener_5 hole_3)
+      (at gardener_6 hole_7)
+      (at gardener_7 hole_3)
+      (at gardener_8 hole_6)
+      (at gardener_9 hole_1)
+      (at gardener_10 hole_4)
+      (at gardener_11 hole_0)
+      (at gardener_12 hole_3)
+      (at gardener_13 hole_7)
+      (at gardener_14 hole_10)
+      (not(can-full gardener_0))
+      (can-full gardener_1)
+      (can-full gardener_2)
+      (can-full gardener_3)
+      (can-full gardener_4)
+      (can-full gardener_5)
+      (can-full gardener_6)
+      (can-full gardener_7)
+      (can-full gardener_8)
+      (can-full gardener_9)
+      (not(can-full gardener_10))
+      (can-full gardener_11)
+      (can-full gardener_12)
+      (not(can-full gardener_13))
+      (not(can-full gardener_14))
+   )
+)

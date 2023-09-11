@@ -1,0 +1,58 @@
+; num_nurse: 65
+; num_doctor: 1
+; num_patient: 34
+; num_toolset: 1
+
+(define
+   (problem pfile97)
+   (:domain medical)
+   (:objects
+      nurse_0 nurse_1 nurse_2 nurse_3 nurse_4 nurse_5 nurse_6 nurse_7 nurse_8 nurse_9 nurse_10 nurse_11 nurse_12 nurse_13 nurse_14 nurse_15 nurse_16 nurse_17 nurse_18 nurse_19 nurse_20 nurse_21 nurse_22 nurse_23 nurse_24 nurse_25 nurse_26 nurse_27 nurse_28 nurse_29 nurse_30 nurse_31 nurse_32 nurse_33 nurse_34 nurse_35 nurse_36 nurse_37 nurse_38 nurse_39 nurse_40 nurse_41 nurse_42 nurse_43 nurse_44 nurse_45 nurse_46 nurse_47 nurse_48 nurse_49 nurse_50 nurse_51 nurse_52 nurse_53 nurse_54 nurse_55 nurse_56 nurse_57 nurse_58 nurse_59 nurse_60 nurse_61 nurse_62 nurse_63 nurse_64 - nurse
+      doctor_0 - doctor
+      patient_0 patient_1 patient_2 patient_3 patient_4 patient_5 patient_6 patient_7 patient_8 patient_9 patient_10 patient_11 patient_12 patient_13 patient_14 patient_15 patient_16 patient_17 patient_18 patient_19 patient_20 patient_21 patient_22 patient_23 patient_24 patient_25 patient_26 patient_27 patient_28 patient_29 patient_30 patient_31 patient_32 patient_33 - patient
+      toolset_0 - toolset
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (operate patient_0))
+         (task1 (operate patient_1))
+         (task2 (operate patient_2))
+         (task3 (operate patient_3))
+         (task4 (operate patient_4))
+         (task5 (operate patient_5))
+         (task6 (operate patient_6))
+         (task7 (operate patient_7))
+         (task8 (operate patient_8))
+         (task9 (operate patient_9))
+         (task10 (operate patient_10))
+         (task11 (operate patient_11))
+         (task12 (operate patient_12))
+         (task13 (operate patient_13))
+         (task14 (operate patient_14))
+         (task15 (operate patient_15))
+         (task16 (operate patient_16))
+         (task17 (operate patient_17))
+         (task18 (operate patient_18))
+         (task19 (operate patient_19))
+         (task20 (operate patient_20))
+         (task21 (operate patient_21))
+         (task22 (operate patient_22))
+         (task23 (operate patient_23))
+         (task24 (operate patient_24))
+         (task25 (operate patient_25))
+         (task26 (operate patient_26))
+         (task27 (operate patient_27))
+         (task28 (operate patient_28))
+         (task29 (operate patient_29))
+         (task30 (operate patient_30))
+         (task31 (operate patient_31))
+         (task32 (operate patient_32))
+         (task33 (operate patient_33))
+      )
+   )
+
+   (:init
+   )
+)

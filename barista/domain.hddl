@@ -1,0 +1,214 @@
+; the cafe is composed of counter and the back. 
+; orders are takes and served at the counter. The same barista that takes the order is supposed to serve it.
+; it doesn't matter which barista makes the coffee
+; coffee is made by a barista in the back
+; once the coffee is prepared it must be takes to the counter before it can be served
+; number of baristas and customers may vary
+; there is only one counter and only one "back"
+
+
+
+(define (domain barista)
+	(:requirements :hierarchy :negative-preconditions :typing :method-preconditions)
+
+
+
+	(:types
+		barista
+		customer
+	)
+
+
+
+	(:predicates
+		(order-taken ?c - customer)
+		(order-prepared ?c - customer)
+		(order-at-counter ?c - customer)
+		(customer-served ?c - customer)
+		(barista-at-counter ?b - barista)
+		(barista-in-the-back ?b - barista)
+	)
+
+
+
+	(:task serve
+		:parameters (?c - customer)
+	)
+
+
+
+	(:task prepare_coffee
+		:parameters (?c - customer)
+	)
+
+	
+
+	(:task deliver_coffee
+		:parameters (?c - customer)
+	)
+	
+	(:task ensure_at_counter
+		:parameters (?b - barista)
+	)
+
+
+
+
+
+	(:method m_serve
+		:parameters (?c - customer ?b - barista)
+		:task (serve ?c)
+		:precondition (and )
+		:ordered-subtasks (and
+			(task0 (ensure_at_counter ?b))
+			(task1 (do_take_order ?c ?b))
+			(task2 (prepare_coffee ?c))
+			(task3 (deliver_coffee ?c))
+			(task4 (ensure_at_counter ?b))
+			(task5 (do_serve ?c ?b))
+		)
+	)
+
+
+
+	(:method m0_prepare_coffee
+		:parameters (?c - customer ?b - barista)
+		:task (prepare_coffee ?c)
+		:precondition (and (barista-in-the-back ?b))
+		:subtasks (and
+			(do_make_coffee ?c ?b)
+		)
+	)
+
+
+
+	(:method m1_prepare_coffee
+		:parameters (?c - customer ?b - barista)
+		:task (prepare_coffee ?c)
+		:precondition (and (barista-at-counter ?b))
+		:ordered-subtasks (and
+			(do_move_back ?b)
+			(do_make_coffee ?c ?b)
+		)
+	)
+
+
+
+	(:method m0_deliver_coffee
+		:parameters (?c - customer ?b - barista)
+		:task (deliver_coffee ?c)
+		:precondition (and (barista-in-the-back ?b))
+		:subtasks (and
+			(do_move_coffee ?c ?b)
+		)
+	)
+
+
+
+	(:method m1_deliver_coffee
+		:parameters (?c - customer ?b - barista)
+		:task (deliver_coffee ?c)
+		:precondition (and (barista-at-counter ?b))
+		:ordered-subtasks (and
+			(do_move_back ?b)
+			(do_move_coffee ?c ?b)
+		)
+	)
+	
+	(:method m0_ensure_at_counter
+		:parameters (?b - barista)
+		:task (ensure_at_counter ?b)
+		:precondition (and (barista-at-counter ?b))
+		:ordered-subtasks (and
+			(nop )
+		)
+	)
+	(:method m1_ensure_at_counter
+		:parameters (?b - barista)
+		:task (ensure_at_counter ?b)
+		:precondition (and (barista-in-the-back ?b))
+		:ordered-subtasks (and
+			(do_move_counter ?b)
+		)
+	)
+
+
+	(:action do_take_order
+		:parameters (?c - customer ?b - barista)
+		:precondition
+			(and
+				(not (order-taken ?c))
+			)
+
+		:effect (and
+				(order-taken ?c)
+			)
+	)
+
+
+
+	(:action do_make_coffee
+		:parameters (?c - customer ?b - barista)
+		:precondition (and (barista-in-the-back ?b))
+		:effect (and
+			(order-prepared ?c)
+		)
+	)
+
+
+
+	(:action do_move_back
+		:parameters (?b - barista)
+		:precondition (and (barista-at-counter ?b))
+		:effect (and
+			(not (barista-at-counter ?b))
+			(barista-in-the-back ?b)
+		)
+	)
+
+
+
+	(:action do_move_counter
+		:parameters (?b - barista)
+		:precondition (and (barista-in-the-back ?b))
+		:effect (and
+			(barista-at-counter ?b)
+			(not (barista-in-the-back ?b))
+		)
+	)
+
+
+
+	(:action do_move_coffee
+		:parameters (?c - customer ?b - barista)
+		:precondition (and (barista-in-the-back ?b))
+		:effect (and
+			(barista-at-counter ?b)
+			(order-at-counter ?c)
+			(not (barista-in-the-back ?b))
+		)
+	)
+
+
+
+	(:action do_serve
+		:parameters (?c - customer ?b - barista)
+		:precondition (and 
+			(barista-at-counter ?b)
+			(order-at-counter ?c)
+		)
+
+		:effect (and 
+			(customer-served ?c)
+		)
+	)
+	
+	(:action nop
+		:parameters ()
+		:precondition ()
+		:effect ()
+	)
+
+)
+
+				

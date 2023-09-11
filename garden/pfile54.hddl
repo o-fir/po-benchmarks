@@ -1,0 +1,57 @@
+; num_gardener: 3
+; num_tree: 27
+; num_hole: 27
+; num_well: 4
+
+(define
+   (problem pfile54)
+   (:domain garden)
+   (:objects
+      gardener_0, gardener_1, gardener_2 - gardener
+      tree_0, tree_1, tree_2, tree_3, tree_4, tree_5, tree_6, tree_7, tree_8, tree_9, tree_10, tree_11, tree_12, tree_13, tree_14, tree_15, tree_16, tree_17, tree_18, tree_19, tree_20, tree_21, tree_22, tree_23, tree_24, tree_25, tree_26 - tree
+      hole_0, hole_1, hole_2, hole_3, hole_4, hole_5, hole_6, hole_7, hole_8, hole_9, hole_10, hole_11, hole_12, hole_13, hole_14, hole_15, hole_16, hole_17, hole_18, hole_19, hole_20, hole_21, hole_22, hole_23, hole_24, hole_25, hole_26 - hole
+      well_0, well_1, well_2, well_3 - well
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (plant tree_0))
+         (task1 (plant tree_1))
+         (task2 (plant tree_2))
+         (task3 (plant tree_3))
+         (task4 (plant tree_4))
+         (task5 (plant tree_5))
+         (task6 (plant tree_6))
+         (task7 (plant tree_7))
+         (task8 (plant tree_8))
+         (task9 (plant tree_9))
+         (task10 (plant tree_10))
+         (task11 (plant tree_11))
+         (task12 (plant tree_12))
+         (task13 (plant tree_13))
+         (task14 (plant tree_14))
+         (task15 (plant tree_15))
+         (task16 (plant tree_16))
+         (task17 (plant tree_17))
+         (task18 (plant tree_18))
+         (task19 (plant tree_19))
+         (task20 (plant tree_20))
+         (task21 (plant tree_21))
+         (task22 (plant tree_22))
+         (task23 (plant tree_23))
+         (task24 (plant tree_24))
+         (task25 (plant tree_25))
+         (task26 (plant tree_26))
+      )
+   )
+
+   (:init
+      (at gardener_0 hole_13)
+      (at gardener_1 hole_7)
+      (at gardener_2 hole_16)
+      (can-full gardener_0)
+      (not(can-full gardener_1))
+      (not(can-full gardener_2))
+   )
+)

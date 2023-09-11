@@ -1,0 +1,143 @@
+; problem is performing experiments
+; experiments are performed in the lab by 2 scientists, after which lab equipment must be rearranged by 1 scientist
+; labs are accessed via ports
+; a new person can't enter a lab, if there is already someone inside.
+; only one person can enter via port
+
+(define (domain quarantine)
+	(:requirements :hierarchy :negative-preconditions :equality :typing :method-preconditions)
+
+	(:types
+		contamination
+		subject
+		environment
+		experiment
+		decontamination-procedure
+	)
+
+	(:predicates
+		(assigned ?e - experiment ?env - environment)
+		(contaminated ?e - environment ?c - contamination)
+		(carrier ?s - subject ?c - contamination)
+		(decontamination-type ?d - decontamination-procedure ?c - contamination)
+		(experiment-type ?e - experiment ?c - contamination)
+	)
+
+	(:task perform_experiment
+		:parameters (?e - experiment)
+	)
+
+	(:task contaminate
+		:parameters (?env - environment ?c - contamination)
+	)
+
+	(:task decontaminate
+		:parameters (?env - environment ?c - contamination)
+	)
+
+	(:method m0_perform_experiment
+		:parameters (?e - experiment ?c - contamination ?env - environment)
+		:task (perform_experiment ?e)
+		:precondition (and
+			(experiment-type ?e ?c)
+		)
+		:ordered-subtasks (and
+			(contaminate ?env ?c)
+			(do_experiment ?e ?env ?c)
+			(decontaminate ?env ?c)
+		)
+	)
+
+
+	(:method m0_contaminate
+		:parameters (?env - environment ?c - contamination)
+		:task (contaminate ?env ?c)
+		:precondition (and
+			(not(contaminated ?env ?c))
+		)
+		:ordered-subtasks (and
+			(do_contaminate ?env ?c)
+		)
+	)
+	(:method m1_contaminate
+		:parameters (?env - environment ?c - contamination)
+		:task (contaminate ?env ?c)
+		:precondition (and
+			(contaminated ?env ?c)
+		)
+		:ordered-subtasks (and
+			(nop)
+		)
+	)
+	(:method m0_decontaminate
+		:parameters (?env - environment ?c - contamination ?d - decontamination-procedure)
+		:task (decontaminate ?env ?c)
+		:precondition (and
+			(contaminated ?env ?c)
+			(decontamination-type ?d ?c)
+		)
+		:ordered-subtasks (and
+			(do_clear_environment ?env)
+			(do_initiate_decontamination ?env ?d)
+			(do_decontaminate ?env ?c)
+		)
+	)
+	(:method m1_decontaminate
+		:parameters (?env - environment ?c - contamination)
+		:task (decontaminate ?env ?c)
+		:precondition (and
+			(not(contaminated ?env ?c))
+		)
+		:ordered-subtasks (and
+			(nop)
+		)
+	)
+
+	(:action do_experiment
+		:parameters (?e - experiment ?env - environment ?c - contamination)
+		:precondition (and 
+			(contaminated ?env ?c)
+			(experiment-type ?e ?c)
+		)
+		:effect (and
+		)
+	)
+
+	(:action do_contaminate
+		:parameters (?env - environment ?c - contamination)
+		:precondition (and )
+		:effect (and
+			(contaminated ?env ?c)
+		)
+	)
+
+	(:action do_clear_environment
+		:parameters (?env - environment)
+		:precondition (and )
+		:effect (and
+		)
+	)
+
+	(:action do_initiate_decontamination
+		:parameters (?env - environment ?d - decontamination-procedure)
+		:precondition (and )
+		:effect (and
+		)
+	)
+
+	(:action do_decontaminate
+		:parameters (?env - environment ?c - contamination)
+		:precondition (and 
+			(contaminated ?env ?c)	
+		)
+		:effect (and
+			(not(contaminated ?env ?c))
+		)
+	)
+
+
+	(:action nop
+  	:parameters ()
+  	:precondition ()
+  	:effect ())
+)

@@ -1,0 +1,185 @@
+; there is a garden where trees must be planted
+; to plant a tree a gardener must 1. dig a hole 2. plant a tree 3. water it and 4. fill the hole
+; gardener can water any time after the hole has been dug
+; gardener always carries a can with him which can be filled with water for one hole
+; a can is refilled at the well
+; planting method does not specify which gardener waters the hole so a concurrent plan can be produced, where 1 gardener is digging the hole and planting the tree while another one is going to get water
+
+(define (domain garden)
+
+	(:requirements :negative-preconditions :hierarchy :typing :method-preconditions)
+
+	(:types
+		gardener - object
+		tree - object
+		hole - location
+		well - location
+	)
+
+	(:predicates
+		(dug ?h - hole)
+		(planted ?t - tree ?h - hole)
+		(watered ?h - hole)
+		(occupied ?h - hole)
+		(can-full ?g - gardener)
+		(at ?o - object ?l - location)
+	)
+
+	(:task plant
+		:parameters (?t - tree)
+	)
+
+	(:task water
+		:parameters (?l - location)
+	)
+
+	(:task move
+		:parameters (?g - gardener ?l - location)
+	)
+
+	(:method m0_plant
+		:parameters (?t - tree ?h - hole ?g - gardener)
+		:task (plant ?t)
+		:precondition (and (not(occupied ?h)))
+		:subtasks (and
+			(task0 (move ?g ?h))
+			(task1 (do_dig ?h ?g))
+			(task2 (do_plant ?t ?h ?g))
+			(task3 (water ?h))
+			(task4 (do_fill_hole ?h ?g))
+		)
+		:ordering (and
+			(< task0 task1)
+			(< task1 task2)
+			(< task1 task3)
+			(< task2 task4)
+		)
+	)
+
+	(:method m0_water
+		:parameters (?h - hole ?w - well ?g - gardener)
+		:task (water ?h)
+		:precondition (and 
+			(not (can-full ?g))
+		)
+		:ordered-subtasks (and
+			(move ?g ?w)
+			(do_fill_can ?g ?w)
+			(move ?g ?h)
+			(do_water ?h ?g)
+		) 
+	)
+
+	(:method m1_water
+		:parameters (?h - hole ?g - gardener)
+		:task (water ?h)
+		:precondition (and 
+			(can-full ?g)
+		)
+		:ordered-subtasks (and
+			(move ?g ?h)
+			(do_water ?h ?g)
+		) 
+	)
+
+	(:method m0_move
+		:parameters (?g - gardener ?from - location ?to - location)
+		:task (move ?g ?to)
+		:precondition (and
+			(not (at ?g ?to))
+			(at ?g ?from)
+		)
+		:subtasks (and
+			(do_move ?g ?from ?to)
+		)
+	)
+
+	(:method m1_move
+		:parameters (?g - gardener ?to - location)
+		:task (move ?g ?to)
+		:precondition (and
+			(at ?g ?to)
+		)
+		:subtasks (and
+			(nop)
+		)
+	)
+
+	(:action do_move
+		:parameters (?g - gardener ?from - location ?to - location)
+		:precondition (and 
+			(at ?g ?from)
+		)
+		:effect (and
+			(not(at ?g ?from))
+			(at ?g ?to)
+		)
+	)
+
+	(:action do_dig
+		:parameters (?h - hole ?g - gardener)
+		:precondition (and 
+			(not (occupied ?h))
+			(at ?g ?h)
+		)
+		:effect (and
+			(dug ?h)
+			(occupied ?h)
+		)
+	)
+
+	(:action do_plant
+		:parameters (?t - tree ?h - hole ?g - gardener)
+		:precondition (and
+			(at ?g ?h) 
+		)
+		:effect (and
+			(planted ?t ?h)
+		)
+	)
+
+	(:action do_water
+		:parameters (?h - hole ?g - gardener)
+		:precondition (and
+			(at ?g ?h)
+			(can-full ?g)
+			
+		)
+		:effect (and
+			(not (can-full ?g))
+			(watered ?h)
+		)
+	)
+
+	(:action do_fill_can
+		:parameters (?g - gardener ?w - well)
+		:precondition (and
+			(at ?g ?w) 
+		)
+		:effect (and
+			(can-full ?g)
+		)
+	)
+
+	(:action do_fill_hole
+		:parameters (?h - hole ?g - gardener)
+		:precondition (and
+			(at ?g ?h) 
+		)
+		:effect (and
+			(not(dug ?h))
+		)
+	)
+
+	(:action nop
+		:parameters ()
+		:precondition 
+			(and
+			)
+		:effect ()
+	)
+
+
+	
+	
+)

@@ -1,0 +1,23 @@
+; num_baristas: 1
+; num_customers: 1
+; barista_distribution: 0
+
+(define
+   (problem pfile0)
+   (:domain barista)
+   (:objects
+      barista_0 - barista
+      customer_0 - customer
+   )
+
+   (:htn
+      :parameters ()
+      :subtasks (and
+         (task0 (serve customer_0))
+      )
+   )
+
+   (:init
+      (barista-at-counter barista_0)
+   )
+)
