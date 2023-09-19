@@ -13,6 +13,7 @@ An example of the chart for oven benchmark:
 
 **XXX_times.png** indicates solve time comparisons for Lilotane and OptiPlan.
 Below you can find an example of the chart (timeout at 10 minutes):
+
 ![oven_time_graph.png](oven_time_graph.png)
 ![barista_time_graph.png](barista_time_graph.png)
 
