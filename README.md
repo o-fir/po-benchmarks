@@ -23,4 +23,4 @@ Below you can find an example of the chart (timeout at 10 minutes):
 
 Finally, you can see the flex comparison between deordered Lilotane and POP OptiPlan. Note, **flex = 1** indicates fully concurrent plan, **flex = 0** indicates fully sequential plan.
 
-![flex_chart](flex_chart.png)
+![flex_chart](flex_graph.png)
