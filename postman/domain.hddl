@@ -98,8 +98,8 @@
 	(:action do_move
 		:parameters (?p - postman ?from - location ?to - location)
 		:precondition (and
-			(at ?p ?from)
-			(not (at ?p ?to))
+			;(at ?p ?from)
+			;(not (at ?p ?to))
 		)
 		:effect (and
 			(not (at ?p ?from))
