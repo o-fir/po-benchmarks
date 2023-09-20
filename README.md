@@ -14,10 +14,13 @@ An example of the chart for oven benchmark:
 **XXX_times.png** indicates solve time comparisons for Lilotane and OptiPlan.
 Below you can find an example of the chart (timeout at 10 minutes):
 
-![oven_time_graph.png](oven_time_graph.png)
-![barista_time_graph.png](barista_time_graph.png)
+![oven.png](oven.png)
+![barista.png](barista.png)
+![emergency.png](emergency.png)
+![medical.png](medical.png)
+![postman.png](postman.png)
 
 
 Finally, you can see the flex comparison between deordered Lilotane and POP OptiPlan. Note, **flex = 1** indicates fully concurrent plan, **flex = 0** indicates fully sequential plan.
 
-![flex_comparison_graph](flex_comparison_graph.png)
+![flex_chart](flex_chart.png)
